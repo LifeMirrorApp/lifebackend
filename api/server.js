@@ -42,7 +42,7 @@ const corsOptions = {
     "https://dreamsimu.vercel.app",
     "https://www.dreamsimu.com",
     "https://dreamsimu.com",
-    "https://dreamsimuweb.vercel.app",
+    "https://lifemirrordashboard.vercel.app",
   ], // specify your client's URL
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization", "X-API-Key", "X-Api-Key"],
