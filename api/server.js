@@ -43,6 +43,7 @@ const corsOptions = {
     "https://www.lifemirror.org",
     "https://lifemirror.org",
     "https://lifemirrordashboard.vercel.app",
+    "https://dashboard.lifemirror.org",
   ], // specify your client's URL
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization", "X-API-Key", "X-Api-Key"],
