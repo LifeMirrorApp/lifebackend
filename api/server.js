@@ -40,8 +40,8 @@ const corsOptions = {
     "http://localhost:3002",
     "http://localhost:5173",
     "https://dreamsimu.vercel.app",
-    "https://www.dreamsimu.com",
-    "https://dreamsimu.com",
+    "https://www.lifemirror.org",
+    "https://lifemirror.org",
     "https://lifemirrordashboard.vercel.app",
   ], // specify your client's URL
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
