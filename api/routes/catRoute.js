@@ -1,16 +1,51 @@
+// import express from "express";
+
+// import { createCat } from "../controller/catController.js";
+
+// const router = express.Router();
+
+// //CREATE
+// router.post("/category", createCat);
+
+// export default router;
+// routes/categoryRoutes.js
 import express from "express";
-
-import { createCat } from "../controller/catController.js";
-
+import multer from "multer";
+import {
+  createCategory,
+  getAllCategories,
+} from "../controller/catController.js";
+import multerS3 from "multer-s3";
+import { S3Client } from "@aws-sdk/client-s3";
 const router = express.Router();
 
-//CREATE
-router.post("/category", createCat);
-// router.delete("/grade/:id", deleteGrade);
+// AWS S3 Configuration
+const s3 = new S3Client({
+  region: process.env.AWS_REGION,
+  credentials: {
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  },
+  signatureVersion: "v4",
+});
 
-// router.get("/grade", getGrade);
-// router.get("/grade/find/:id", getsingleGrade);
-// router.put("/grade/:id", updateGrade);
+const upload = multer({
+  storage: multerS3({
+    s3: s3,
+    bucket: "eduprosolution",
+    contentType: multerS3.AUTO_CONTENT_TYPE,
+    key: (req, file, cb) => {
+      const fileKey = `category/${Date.now()}-${file.originalname}`;
+      cb(null, fileKey);
+    },
+    expires: 60 * 60 * 24 * 7,
+  }),
+});
 
-// router.delete("/grade/:id", deleteGrade);
+// POST /api/categories
+router.post("/category", upload.single("image"), createCategory);
+
+// GET /api/categories
+router.get("/categories", getAllCategories);
+
 export default router;

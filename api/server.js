@@ -1,15 +1,10 @@
 import express from "express";
 import visionRoutes from "./routes/visionRoutes.js";
-import aiRoute from "./routes/aiRoute.js";
-import refineRoute from "./routes/refineRoute.js";
-import sprintRoute from "./routes/sprintRoute.js";
-import pointRoute from "./routes/pointRoute.js";
-import disbursementRoute from "./routes/disbursementRoute.js";
-import ideaRoute from "./routes/ideaRoute.js";
-import schoolRoute from "./routes/schoolRoute.js";
-import offlineRoute from "./routes/offlineRoute.js";
-import OffRoutes from "./routes/OffRoutes.js";
-import receiptRoute from "./routes/receiptRoute.js";
+
+import productRoute from "./routes/productRoute.js";
+
+import catRoute from "./routes/catRoute.js";
+
 import passport from "passport";
 import "./passport.js";
 import session from "express-session";
@@ -37,7 +32,8 @@ const __dirname = dirname(__filename);
 // Configure CORS
 const corsOptions = {
   origin: [
-    "http://localhost:3003",
+    "http://localhost:3001",
+    "http://localhost:3000",
     "http://localhost:5173",
     "https://dreamsimu.vercel.app",
     "https://www.lifemirror.org",
@@ -75,20 +71,12 @@ app.use(passport.session());
 // });
 app.use("/api", authRoute);
 app.use("/api", visionRoutes);
-app.use("/api", aiRoute);
-app.use("/api", ideaRoute);
-app.use("/api", refineRoute);
-app.use("/api", sprintRoute);
-app.use("/api/", OffRoutes);
-app.use("/api/", noticeRoute);
-app.use("/api/", receiptRoute);
-app.use("/api", schoolRoute);
-app.use("/api", blogRoute);
+
+app.use("/api", productRoute);
+
+app.use("/api", catRoute);
 app.use("/api/auth", authRoute);
 // Use commonRouter with specific routes requiring authentication
-
-app.use("/api/", pointRoute);
-app.use("/api/", disbursementRoute);
 
 // app.use("/api/", commonRoute(s3));
 
