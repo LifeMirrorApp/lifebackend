@@ -24,7 +24,9 @@ dotenv.config();
 const app = express();
 connectDB();
 
-app.use(express.json());
+// app.use(express.json());
+app.use(express.json({ limit: "50gb" }));
+app.use(express.urlencoded({ extended: true, limit: "50gb" }));
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
