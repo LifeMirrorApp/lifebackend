@@ -35,29 +35,15 @@ const upload = multer({
 });
 
 // router.post("/create-product", upload.array("images", 5), createProduct);
-// router.post(
-//   "/create-product",
-//   upload.fields([
-//     { name: "images", maxCount: 5 }, // Supports up to 5 images
-//     { name: "videoFile", maxCount: 1 }, // Supports 1 video file (if it's a video product)
-//   ]),
-//   createProduct
-// );
 router.post(
   "/create-product",
   upload.fields([
     { name: "images", maxCount: 5 }, // Supports up to 5 images
-    { name: "videoFile", maxCount: 1 }, // Supports 1 video file (if it's a video product)
+    // { name: "videoFile", maxCount: 1 }, // Supports 1 video file (if it's a video product)
+    { name: "supportingFile", maxCount: 1 },
   ]),
-  (req, res, next) => {
-    // Log the request body and uploaded files to inspect what is being sent
-    console.log("Request Body:", req.body);
-    console.log("Uploaded Files:", req.files);
-    next(); // Proceed to the next middleware (createProduct)
-  },
   createProduct
 );
-
 router.get("/products", getProducts);
 router.get("/product/:id", getProductById);
 router.put("product/:id", updateProduct);

@@ -30,10 +30,14 @@ export const createProduct = async (req, res) => {
     //   videoFileUrl = req.file.location;
     // }
 
-    let videoFileUrl = null;
-    if (productType === "video" && req.files["videoFile"]) {
-      // Accessing the video file from req.files
-      videoFileUrl = req.files["videoFile"][0].location;
+    // let videoFileUrl = null;
+    // if (productType === "video" && req.files["videoFile"]) {
+    //   // Accessing the video file from req.files
+    //   videoFileUrl = req.files["videoFile"][0].location;
+    // }
+    let supportingFileUrl = null;
+    if (req.files["supportingFile"]) {
+      supportingFileUrl = req.files["supportingFile"][0].location;
     }
 
     const newProduct = await Product.create({
@@ -50,7 +54,7 @@ export const createProduct = async (req, res) => {
       price,
       quantityAvailable,
       productType,
-      videoFile: videoFileUrl,
+      supportingFile: supportingFileUrl,
       reviews, // If reviews are passed, use them; otherwise, use an empty array
       productDate: Date.now(),
     });

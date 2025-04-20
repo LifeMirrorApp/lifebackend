@@ -20,9 +20,11 @@ const productSchema = new mongoose.Schema(
       enum: ["book", "video", "audio", "course"], // Define allowed product types
       required: true,
     },
-    videoFile: {
-      type: String, // URL of the video file (stored in AWS S3 or other cloud storage)
-    },
+    // videoFile: {
+    //   type: String, // URL of the video file (stored in AWS S3 or other cloud storage)
+    // },
+    supportingFile: { type: String }, // URL of the uploaded file
+
     size: {
       type: String, // Optional e.g., "S", "M", "L", "XL"
     },
