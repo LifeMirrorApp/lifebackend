@@ -4,12 +4,10 @@ const productSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      required: true,
     },
     category: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Category",
-      required: true,
     },
     description: {
       type: String,
@@ -18,7 +16,6 @@ const productSchema = new mongoose.Schema(
     productType: {
       type: String,
       enum: ["book", "video", "audio", "course"], // Define allowed product types
-      required: true,
     },
     // videoFile: {
     //   type: String, // URL of the video file (stored in AWS S3 or other cloud storage)
@@ -45,7 +42,6 @@ const productSchema = new mongoose.Schema(
     },
     price: {
       type: Number,
-      required: true,
     },
     quantityAvailable: {
       type: Number,
